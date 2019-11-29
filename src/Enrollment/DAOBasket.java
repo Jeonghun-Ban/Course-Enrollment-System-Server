@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -14,6 +15,7 @@ import Cource.ELecture;
 public class DAOBasket {
 
 	private Vector<ELecture> storedLectures = new Vector<>();
+	private Iterator<ELecture> it;
 	private boolean invalidLecture = false;
 
 	public void add(Vector<ELecture> lectures, Vector<ELecture> applyLectures, String id) throws IOException {
@@ -73,8 +75,14 @@ public class DAOBasket {
 
 	public void delete(Vector<ELecture> lectures, String id) throws IOException {
 		// 선택한 객체 storedLectures에서 삭제
-		for (ELecture lecture : lectures) {
-			storedLectures.remove(lecture);
+		it = storedLectures.iterator();
+		
+		while(it.hasNext()) {
+			for (ELecture lecture : lectures) {
+				if(it.next().getName().equals(lecture.getName())){
+					it.remove();
+				}
+			}
 		}
 
 		FileWriter fw = new FileWriter("data/basket" + id, false);
