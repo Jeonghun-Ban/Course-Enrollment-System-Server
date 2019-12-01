@@ -25,14 +25,6 @@ public class CLogin implements ICLogin {
 		return eLogin.getName();
 	}
 	
-	public void setOption(String opt, String id, String name) throws IOException {
-		eLogin.setOption(opt, id, name);
-	}
-	
-	public String[] getOption() throws FileNotFoundException {
-		return eLogin.getOption();
-	}
-	
 	public void addAccount(String id, String pw, String name) throws IOException {
 		eLogin.addAccount(id, pw, name);
 	}
