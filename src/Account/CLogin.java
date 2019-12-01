@@ -15,7 +15,6 @@ public class CLogin implements ICLogin {
 		// TODO Auto-generated method stub
 		this.eLogin.authenticate(userid, password);
 		return;
-		
 	}
 	
 	public boolean validId(String id) throws FileNotFoundException {

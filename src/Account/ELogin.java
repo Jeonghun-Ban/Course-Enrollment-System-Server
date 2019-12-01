@@ -79,6 +79,14 @@ public class ELogin {
 
 	public void addAccount(String id, String pw, String name) throws IOException {
 		// TODO Auto-generated method stub
+
+		// 회원가입한 사용자의 파일 생성
+		File basket = new File("data/basket" + id);
+		basket.createNewFile();
+		File apply = new File("data/apply" + id);
+		apply.createNewFile();
+		
+		// 로그인 파일에 추가
 		FileWriter fw = new FileWriter("data/login", true);
 		fw.write(id+" "+pw+" "+name+"\r\n");
 		fw.close();
