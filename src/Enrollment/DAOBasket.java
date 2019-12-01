@@ -74,8 +74,8 @@ public class DAOBasket {
 	}
 
 	public void delete(Vector<ELecture> lectures, String id) throws IOException {
-		// 선택한 객체 storedLectures에서 삭제
 		
+		// 선택 객체를 저장된 리스트에서 제거
 		it = storedLectures.iterator();
 		while(it.hasNext()) {
 			ELecture storedLecuture = it.next();
