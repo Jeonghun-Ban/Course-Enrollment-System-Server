@@ -75,11 +75,12 @@ public class DAOBasket {
 
 	public void delete(Vector<ELecture> lectures, String id) throws IOException {
 		// 선택한 객체 storedLectures에서 삭제
-		it = storedLectures.iterator();
 		
+		it = storedLectures.iterator();
 		while(it.hasNext()) {
+			ELecture storedLecuture = it.next();
 			for (ELecture lecture : lectures) {
-				if(it.next().getName().equals(lecture.getName())){
+				if(storedLecuture.getName().equals(lecture.getName())){
 					it.remove();
 				}
 			}

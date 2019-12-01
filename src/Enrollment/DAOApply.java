@@ -76,9 +76,14 @@ public class DAOApply {
 	public void delete(Vector<ELecture> lectures, String id) throws IOException {
 		
 		it = storedLectures.iterator();
+		for(ELecture lecture: lectures) {
+			System.out.println(lecture.getName());
+		}
+		
 		while(it.hasNext()) {
+			ELecture storedLecuture = it.next();
 			for (ELecture lecture : lectures) {
-				if(it.next().getName().equals(lecture.getName())){
+				if(storedLecuture.getName().equals(lecture.getName())){
 					it.remove();
 				}
 			}
