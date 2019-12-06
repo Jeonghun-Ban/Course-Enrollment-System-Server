@@ -51,7 +51,7 @@ public class DAOBasket {
 		}
 		
 		// file write
-		FileWriter fw = new FileWriter("data/basket" + id, true);
+		FileWriter fw = new FileWriter("data/user/" + id + "_basket", true);
 		for (ELecture lecture : lectures) {
 			fw.write(lecture.getNumber() + " " + lecture.getName() + " " + lecture.getProfessor() + " "
 					+ lecture.getCredit() + " " + lecture.getTime() + "\r\n");
@@ -62,7 +62,7 @@ public class DAOBasket {
 
 	public Vector<ELecture> show(String id) throws FileNotFoundException {
 		storedLectures.removeAllElements();
-		Scanner scanner = new Scanner(new FileReader("data/basket" + id));
+		Scanner scanner = new Scanner(new FileReader("data/user/" + id + "_basket"));
 		while (scanner.hasNext()) {
 			ELecture storedLecture = new ELecture();
 			storedLecture.read(scanner);
@@ -86,7 +86,7 @@ public class DAOBasket {
 			}
 		}
 
-		FileWriter fw = new FileWriter("data/basket" + id, false);
+		FileWriter fw = new FileWriter("data/user/" + id + "_basket", false);
 		for (ELecture storedLecture : storedLectures) {
 			fw.write(storedLecture.getNumber() + " " + storedLecture.getName() + " " + storedLecture.getProfessor()
 					+ " " + storedLecture.getCredit() + " " + storedLecture.getTime() + "\r\n");

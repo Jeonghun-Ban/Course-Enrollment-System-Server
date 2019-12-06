@@ -52,7 +52,7 @@ public class DAOApply {
 		
 		// file write
 		for (ELecture lecture : lectures) {
-			FileWriter fw = new FileWriter("data/apply" + id, true);
+			FileWriter fw = new FileWriter("data/user/" + id + "_apply", true);
 			fw.write(lecture.getNumber() + " " + lecture.getName() + " " + lecture.getProfessor() + " "
 					+ lecture.getCredit() + " " + lecture.getTime() + "\r\n");
 			fw.close();
@@ -62,7 +62,7 @@ public class DAOApply {
 
 	public Vector<ELecture> show(String id) throws FileNotFoundException {
 		storedLectures.removeAllElements();
-		Scanner scanner = new Scanner(new FileReader("data/apply" + id));
+		Scanner scanner = new Scanner(new FileReader("data/user/" + id + "_apply"));
 		while (scanner.hasNext()) {
 			ELecture storedLecture = new ELecture();
 			storedLecture.read(scanner);
@@ -86,7 +86,7 @@ public class DAOApply {
 			}
 		}
 
-		FileWriter fw = new FileWriter("data/apply" + id, false);
+		FileWriter fw = new FileWriter("data/user/" + id + "_apply", false);
 		for (ELecture storedLecture : storedLectures) {
 			fw.write(storedLecture.getNumber() + " " + storedLecture.getName() + " " + storedLecture.getProfessor()
 					+ " " + storedLecture.getCredit() + " " + storedLecture.getTime() + "\r\n");

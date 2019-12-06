@@ -18,7 +18,7 @@ public class ELogin {
 
 	public void authenticate(String userid, String password) throws FileNotFoundException, InvalidUserException {
 		// TODO Auto-generated method stub
-			Scanner scanner = new Scanner(new File("./data/login"));
+			Scanner scanner = new Scanner(new File("./data/user/login"));
 			
 			while(scanner.hasNext()) {
 				this.read(scanner);
@@ -35,7 +35,7 @@ public class ELogin {
 	public boolean validId(String id) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		boolean valid = true;
-		Scanner scanner = new Scanner(new File("./data/login"));
+		Scanner scanner = new Scanner(new File("./data/user/login"));
 		
 		while(scanner.hasNext()) {
 			this.read(scanner);
@@ -57,13 +57,13 @@ public class ELogin {
 		// TODO Auto-generated method stub
 
 		// 회원가입한 사용자의 파일 생성
-		File basket = new File("data/basket" + id);
+		File basket = new File("data/user/" + id+ "_basket");
 		basket.createNewFile();
-		File apply = new File("data/apply" + id);
+		File apply = new File("data/user/" + id+ "_apply");
 		apply.createNewFile();
 		
 		// 로그인 파일에 추가
-		FileWriter fw = new FileWriter("data/login", true);
+		FileWriter fw = new FileWriter("data/user/login", true);
 		fw.write(id+" "+pw+" "+name+"\r\n");
 		fw.close();
 	}
