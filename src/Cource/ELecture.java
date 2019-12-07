@@ -26,23 +26,34 @@ public class ELecture implements Serializable {
 	public int getNumber() {
 		return number;
 	}
-
+	public void setNumber(int number) {
+		this.number = number;
+	}
 	public String getName() {
 		return name;
 	}
-
-
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getProfessor() {
 		return professor;
 	}
-
-
+	public void setProfessor(String professor) {
+		this.professor = professor;
+	}
 	public int getCredit() {
 		return credit;
 	}
-
-
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
 	public String getTime() {
 		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }
