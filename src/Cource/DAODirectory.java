@@ -7,12 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
+import main.Constants;
+
 public class DAODirectory {
 	
-	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; 
-	static final String DB_URL = "jdbc:mysql://localhost:3306/directory?useSSL=false&serverTimezone=UTC"; 
-	static final String USERNAME = "root";
-	static final String PASSWORD = "root";
+	static final String JDBC_DRIVER = Constants.JDBC_DRIVER; 
+	static final String DB_URL = Constants.DB_URL + "directory" + Constants.DB_URL2;
+	static final String USERNAME = Constants.USERNAME;
+	static final String PASSWORD = Constants.PASSWORD;
 	
 	Connection conn = null;
 	Statement state = null;

@@ -1,21 +1,21 @@
 ﻿package Cource;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 import java.util.Vector;
+
+import main.Constants;
 
 public class DAOLecture {
 	
-	static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver"; 
-	static final String DB_URL = "jdbc:mysql://localhost:3306/lecture?useSSL=false&serverTimezone=UTC"; 
-	static final String USERNAME = "root";
-	static final String PASSWORD = "root";
+	static final String JDBC_DRIVER = Constants.JDBC_DRIVER; 
+	static final String DB_URL = Constants.DB_URL + "lecture" + Constants.DB_URL2;
+	static final String USERNAME = Constants.USERNAME;
+	static final String PASSWORD = Constants.PASSWORD;
 	
 	Connection conn = null;
 	Statement state = null;

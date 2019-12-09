@@ -17,6 +17,7 @@ local.properties
 
 # datafiles
 data/
+Constants.java
 
 # External tool builders
 .externalToolBuilders/
