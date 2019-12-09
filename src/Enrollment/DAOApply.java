@@ -17,7 +17,6 @@ import main.Constants;
 
 public class DAOApply {
 	
-	
 	static final String JDBC_DRIVER = Constants.JDBC_DRIVER; 
 	static final String DB_URL = Constants.DB_URL + "apply" + Constants.DB_URL2;
 	static final String USERNAME = Constants.USERNAME;
