@@ -25,8 +25,8 @@ public class CLogin implements ICLogin {
 		return eLogin.getName();
 	}
 	
-	public void addAccount(String id, String pw, String name) throws IOException {
-		eLogin.addAccount(id, pw, name);
+	public void addAccount(String id, String pw, String name, String major, int credit) throws IOException {
+		eLogin.addAccount(id, pw, name, major, credit);
 	}
 	
 }
