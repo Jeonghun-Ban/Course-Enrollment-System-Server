@@ -1,23 +1,51 @@
 ﻿package Enrollment;
 
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
 import Cource.ELecture;
+import main.Constants;
 
 public class DAOApply {
+	
+	
+	static final String JDBC_DRIVER = Constants.JDBC_DRIVER; 
+	static final String DB_URL = Constants.DB_URL + "apply" + Constants.DB_URL2;
+	static final String USERNAME = Constants.USERNAME;
+	static final String PASSWORD = Constants.PASSWORD;
+	
+	String tableName = null;
+	
+	Connection conn = null;
+	Statement state = null;
+	PreparedStatement prest = null;
 
 	private Vector<ELecture> storedLectures = new Vector<>();
-	private Iterator<ELecture> it;
 	private boolean invalidLecture = false;
-
+	
+	public DAOApply() {
+		try {
+			Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+			state = conn.createStatement();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void add(Vector<ELecture> lectures, Vector<ELecture> basketLectures, String id) throws IOException {
 		// TODO Auto-generated method stub
 
@@ -50,48 +78,61 @@ public class DAOApply {
 			invalidLecture = false;
 		}
 		
-		// file write
-		for (ELecture lecture : lectures) {
-			FileWriter fw = new FileWriter("data/user/" + id + "_apply", true);
-			fw.write(lecture.getNumber() + " " + lecture.getName() + " " + lecture.getProfessor() + " "
-					+ lecture.getCredit() + " " + lecture.getTime() + "\r\n");
-			fw.close();
+		// db write
+		try {
+			for (ELecture lecture : lectures) {
+				prest = conn.prepareStatement("insert into " + tableName + "(id, name, professor, credit, time) values (?, ?, ?, ?, ?)");
+		
+				prest.setInt(1, lecture.getNumber());
+				prest.setString(2,  lecture.getName());
+				prest.setString(3,  lecture.getProfessor());
+				prest.setInt(4, lecture.getCredit());
+				prest.setString(5, lecture.getTime());
+				
+				prest.execute();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 	}
 
 	public Vector<ELecture> show(String id) throws FileNotFoundException {
+		tableName = "apply_"+id;
+		
 		storedLectures.removeAllElements();
-		Scanner scanner = new Scanner(new FileReader("data/user/" + id + "_apply"));
-		while (scanner.hasNext()) {
-			ELecture storedLecture = new ELecture();
-			storedLecture.read(scanner);
-			storedLectures.add(storedLecture);
+		
+		try {
+			ResultSet rs = state.executeQuery("select * from " + tableName);
+
+			while (rs.next()) {
+				ELecture storedLecture = new ELecture();
+				
+				storedLecture.setNumber(rs.getInt("id"));
+				storedLecture.setName(rs.getString("name"));
+				storedLecture.setProfessor(rs.getString("professor"));
+				storedLecture.setCredit(rs.getInt("credit"));
+				storedLecture.setTime(rs.getString("time"));
+				
+				storedLectures.add(storedLecture);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		scanner.close();
 
 		return storedLectures;
 	}
 
 	public void delete(Vector<ELecture> lectures, String id) throws IOException {
-		
-		// 선택 객체를 저장된 리스트에서 제거
-		it = storedLectures.iterator();
-		while(it.hasNext()) {
-			ELecture storedLecuture = it.next();
+		try {
 			for (ELecture lecture : lectures) {
-				if(storedLecuture.getName().equals(lecture.getName())){
-					it.remove();
-				}
+				state.executeUpdate("delete from " + tableName + " where id = " + lecture.getNumber() + ";");
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		FileWriter fw = new FileWriter("data/user/" + id + "_apply", false);
-		for (ELecture storedLecture : storedLectures) {
-			fw.write(storedLecture.getNumber() + " " + storedLecture.getName() + " " + storedLecture.getProfessor()
-					+ " " + storedLecture.getCredit() + " " + storedLecture.getTime() + "\r\n");
-		}
-		fw.close();
 	}
 
 }
