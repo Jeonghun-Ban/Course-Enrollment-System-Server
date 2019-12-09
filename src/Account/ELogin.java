@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import main.Constants;
+import main.CurrentUser;
 
 public class ELogin {
 	
@@ -32,12 +33,8 @@ public class ELogin {
 	
 	Statement basketState = null;
 	Statement applyState = null;
-	
-	private String userId;
-	private String password;
-	private String name;
 
-	ELogin(){
+	public ELogin(){
 		try {
 			Class.forName(JDBC_DRIVER);
 			userCon = DriverManager.getConnection(USER_DB_URL,USERNAME,PASSWORD);
@@ -62,11 +59,11 @@ public class ELogin {
 			ResultSet rs = userState.executeQuery("select id, password, name from user_table");
 			
 			while(rs.next()) {
-				this.userId = rs.getString("id");
-				this.password = rs.getString("password");
-				this.name = rs.getString("name");
+				CurrentUser.userId = rs.getString("id");
+				CurrentUser.password = rs.getString("password");
+				CurrentUser.name = rs.getString("name");
 				
-				if(this.userId.equals(userid)&&this.password.equals(password)){
+				if(CurrentUser.userId.equals(userid)&&CurrentUser.password.equals(password)){
 					return;
 				}
 			}
@@ -86,10 +83,10 @@ public class ELogin {
 			ResultSet rs = userState.executeQuery("select id from user_table");
 			
 			while(rs.next()) {
-				this.userId = rs.getString("id");
+				CurrentUser.userId = rs.getString("id");
 				
-				if(!this.userId.equals(id)){
-					valid = false;
+				if(CurrentUser.userId.equals(id)){
+					return false;
 				}
 			}
 			
@@ -97,16 +94,22 @@ public class ELogin {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		valid = true;
 		return valid;
 	}
+	
+	public String getId() {
+		// TODO Auto-generated method stub
+		return CurrentUser.userId;
+	}
+
 	
 	// 현재 로그인한 사용자 이름 반환
 	public String getName() {
 		// TODO Auto-generated method stub
-		return name;
+		return CurrentUser.name;
 	}
-
+	
+	
 	public void addAccount(String id, String pw, String name, String major, int credit) throws IOException {
 		// TODO Auto-generated method stub
 
