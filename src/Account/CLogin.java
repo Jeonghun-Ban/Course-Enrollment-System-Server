@@ -6,27 +6,27 @@ import Framework.ICLogin;
 
 public class CLogin implements ICLogin {
 
-	private ELogin eLogin;
+	private DAOLogin dAOLogin;
 	public CLogin() {
-		this.eLogin = new ELogin();
+		this.dAOLogin = new DAOLogin();
 	}
 	public void authenticate(String userid, String password) 
 			throws FileNotFoundException, InvalidUserException {
 		// TODO Auto-generated method stub
-		this.eLogin.authenticate(userid, password);
+		this.dAOLogin.authenticate(userid, password);
 		return;
 	}
 	
 	public boolean validId(String id) throws FileNotFoundException {
-		return eLogin.validId(id);
+		return dAOLogin.validId(id);
 	}
 	
 	public String getName() {
-		return eLogin.getName();
+		return dAOLogin.getName();
 	}
 	
 	public void addAccount(String id, String pw, String name, String major, int credit) throws IOException {
-		eLogin.addAccount(id, pw, name, major, credit);
+		dAOLogin.addAccount(id, pw, name, major, credit);
 	}
 	
 }

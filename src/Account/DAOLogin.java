@@ -11,7 +11,7 @@ import java.sql.Statement;
 import main.Constants;
 import main.CurrentUser;
 
-public class ELogin {
+public class DAOLogin {
 	
 	// JDBC 설정
 	static final String JDBC_DRIVER = Constants.JDBC_DRIVER;
@@ -34,7 +34,7 @@ public class ELogin {
 	Statement basketState = null;
 	Statement applyState = null;
 
-	public ELogin(){
+	public DAOLogin(){
 		try {
 			Class.forName(JDBC_DRIVER);
 			userCon = DriverManager.getConnection(USER_DB_URL,USERNAME,PASSWORD);
