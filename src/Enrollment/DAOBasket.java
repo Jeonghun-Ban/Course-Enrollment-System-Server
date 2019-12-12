@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import javax.swing.JOptionPane;
-
 import Cource.ELecture;
 import main.Constants;
 
@@ -45,7 +43,7 @@ public class DAOBasket {
 		}
 	}
 	
-	public void add(Vector<ELecture> lectures, Vector<ELecture> applyLectures, String id) throws IOException {
+	public boolean add(Vector<ELecture> lectures, Vector<ELecture> applyLectures, String id) throws IOException {
 		// TODO Auto-generated method stub
 
 		// 중복 강의리스트 삭제
@@ -72,9 +70,8 @@ public class DAOBasket {
 		}
 
 		if(invalidLecture) {
-			JOptionPane.showMessageDialog(null, "선택한 강좌 중에 이미 신청하거나 미리담은 강좌가 있습니다."
-					+ "\n(중복되지 않은 강좌가 있다면 정상적으로 추가됩니다.)", "중복된 강의 존재", JOptionPane.ERROR_MESSAGE);
 			invalidLecture = false;
+			return true; // invalid
 		}
 		
 		// db write
@@ -94,6 +91,8 @@ public class DAOBasket {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return false; // valid
 
 	}
 

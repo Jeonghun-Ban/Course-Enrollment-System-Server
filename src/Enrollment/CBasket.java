@@ -15,9 +15,9 @@ public class CBasket implements ICBasket {
 		this.dAOBasket = new DAOBasket();
 	}
 	
-	public void add(Vector<ELecture> lectures, Vector<ELecture> applyLectures, String id) throws IOException {
+	public boolean add(Vector<ELecture> lectures, Vector<ELecture> applyLectures, String id) throws IOException {
 		// TODO Auto-generated method stub
-		dAOBasket.add(lectures, applyLectures, id);
+		return dAOBasket.add(lectures, applyLectures, id);
 	}
 	
 	public Vector<ELecture> show(String id) throws FileNotFoundException {

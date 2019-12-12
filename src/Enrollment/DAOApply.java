@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-import javax.swing.JOptionPane;
-
 import Cource.ELecture;
 import main.Constants;
 
@@ -72,8 +70,6 @@ public class DAOApply {
 		}
 
 		if(invalidLecture) {
-			JOptionPane.showMessageDialog(null, "선택한 강좌 중에 이미 신청하거나 미리담은 강좌가 있습니다."
-					+ "\n(중복되지 않은 강좌가 있다면 정상적으로 추가됩니다.)", "중복된 강의 존재", JOptionPane.ERROR_MESSAGE);
 			invalidLecture = false;
 		}
 		
