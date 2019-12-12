@@ -15,9 +15,9 @@ public class CApply implements ICApply {
 		this.dAOApply = new DAOApply();
 	}
 	
-	public void add(Vector<ELecture> lectures, Vector<ELecture> basketLectures, String id) throws IOException {
+	public boolean add(Vector<ELecture> lectures, Vector<ELecture> basketLectures, String id) throws IOException {
 		// TODO Auto-generated method stub
-		dAOApply.add(lectures, basketLectures, id);
+		return dAOApply.add(lectures, basketLectures, id);
 	}
 	
 	public Vector<ELecture> show(String id) throws FileNotFoundException {

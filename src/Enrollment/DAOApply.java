@@ -43,7 +43,7 @@ public class DAOApply {
 		}
 	}
 	
-	public void add(Vector<ELecture> lectures, Vector<ELecture> basketLectures, String id) throws IOException {
+	public boolean add(Vector<ELecture> lectures, Vector<ELecture> basketLectures, String id) throws IOException {
 		// TODO Auto-generated method stub
 
 		// 중복 강의리스트 삭제
@@ -71,6 +71,7 @@ public class DAOApply {
 
 		if(invalidLecture) {
 			invalidLecture = false;
+			return true;
 		}
 		
 		// db write
@@ -90,6 +91,7 @@ public class DAOApply {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 	public Vector<ELecture> show(String id) throws FileNotFoundException {
