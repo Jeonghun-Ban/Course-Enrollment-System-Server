@@ -1,7 +1,7 @@
 Course-Enrollment-System Server
 ===
 
-![version](https://img.shields.io/badge/Version-2.2.0-green.svg)
+![version](https://img.shields.io/badge/Version-2.5.0-green.svg)
 ![language](https://img.shields.io/badge/Language-Java-Orange.svg)
 ![swing](https://img.shields.io/badge/GUI-Swing-Blue.svg)
 
@@ -36,3 +36,4 @@ Function
   - remove subjects in cart or application
   - move subjects in cart to application or vice versa
   - save enrollment data by id
+  - course limit credit
