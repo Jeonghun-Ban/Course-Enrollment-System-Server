@@ -25,6 +25,10 @@ public class CLogin implements ICLogin {
 		return dAOLogin.getName();
 	}
 	
+	public String getMajor() {
+		return dAOLogin.getMajor();
+	}
+	
 	public int getCredit() {
 		return dAOLogin.getCredit();
 	}

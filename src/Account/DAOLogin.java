@@ -105,6 +105,10 @@ public class DAOLogin {
 		return CurrentUser.name;
 	}
 	
+	public String getMajor() {
+		return CurrentUser.major;
+	}
+	
 	public int getCredit() {
 		return CurrentUser.credit;
 	}
