@@ -4,6 +4,8 @@ public class CurrentUser {
 	public static String userId;
 	public static String password;
 	public static String name;
+	public static String major;
+	public static int credit;
 	
 	public String getUserId() {
 		return userId;

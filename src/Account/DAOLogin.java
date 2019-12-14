@@ -56,12 +56,14 @@ public class DAOLogin {
 	public void authenticate(String userid, String password) throws FileNotFoundException, InvalidUserException {
 		// TODO Auto-generated method stub
 		try {
-			ResultSet rs = userState.executeQuery("select id, password, name from user_table");
+			ResultSet rs = userState.executeQuery("select * from user_table");
 			
 			while(rs.next()) {
 				CurrentUser.userId = rs.getString("id");
 				CurrentUser.password = rs.getString("password");
 				CurrentUser.name = rs.getString("name");
+				CurrentUser.major = rs.getString("major");
+				CurrentUser.credit = rs.getInt("credit");
 				
 				if(CurrentUser.userId.equals(userid)&&CurrentUser.password.equals(password)){
 					return;
