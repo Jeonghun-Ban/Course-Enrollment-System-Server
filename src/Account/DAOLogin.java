@@ -99,16 +99,14 @@ public class DAOLogin {
 		return valid;
 	}
 	
-	public String getId() {
-		// TODO Auto-generated method stub
-		return CurrentUser.userId;
-	}
-
-	
 	// 현재 로그인한 사용자 이름 반환
 	public String getName() {
 		// TODO Auto-generated method stub
 		return CurrentUser.name;
+	}
+	
+	public int getCredit() {
+		return CurrentUser.credit;
 	}
 	
 	

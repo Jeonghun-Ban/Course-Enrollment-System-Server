@@ -25,6 +25,10 @@ public class CLogin implements ICLogin {
 		return dAOLogin.getName();
 	}
 	
+	public int getCredit() {
+		return dAOLogin.getCredit();
+	}
+	
 	public void addAccount(String id, String pw, String name, String major, int credit) throws IOException {
 		dAOLogin.addAccount(id, pw, name, major, credit);
 	}
