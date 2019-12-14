@@ -16,4 +16,10 @@ public class CurrentUser {
 	public String getName() {
 		return name;
 	}
+	public String getMajor() {
+		return major;
+	}
+	public int getCredit() {
+		return credit;
+	}
 }
